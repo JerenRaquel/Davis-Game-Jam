@@ -62,7 +62,6 @@ public class Astar : MonoBehaviour
                 CalculateNeighborWeight(cameFrom, openSet, current, neighbor, this.target.Index);
             }
         }
-        Debug.LogAssertion("AStar FAILURE!");
         return null;
     }
 
