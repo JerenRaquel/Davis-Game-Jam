@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6909814355258503368}
   m_Layer: 0
   m_Name: AstarProbe
-  m_TagString: Untagged
+  m_TagString: Probe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
