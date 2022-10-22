@@ -22,6 +22,7 @@ public class LevelGenerator : MonoBehaviour
         public RoomController prev;
     }
 
+    public bool enableGenerationOnStart = true;
     public uint maxRooms = 5;
     public int spacing = 8;
     public GameObject[] rooms;
@@ -54,7 +55,9 @@ public class LevelGenerator : MonoBehaviour
         }
 
         //Temp -- This might stay if we choose to just spawn a new scene per level instead
-        Generate();
+        if(this.enableGenerationOnStart){
+            Generate();
+        }
     }
 
     public void Generate() {
