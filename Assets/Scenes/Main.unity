@@ -153,8 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxRooms: 5
+  spacing: 9
   rooms:
-  - {fileID: 11400000, guid: adbe2f17d9c19984f8097a936dac7526, type: 2}
+  - {fileID: 1379109553968894348, guid: 4dae6dd6587e1794cb1f9dab314b8898, type: 3}
 --- !u!4 &259165128
 Transform:
   m_ObjectHideFlags: 0

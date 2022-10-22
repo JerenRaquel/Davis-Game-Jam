@@ -4,56 +4,65 @@ using UnityEngine;
 
 public class RoomController : MonoBehaviour
 {
-    public RoomData.ROOM_TYPE type;
-    public Vector2Int interiorSize;
+    public enum ROOM_TYPE { 
+        NORTH = 0b0000_0001,    // 1
+        SOUTH = 0b0000_0010,    // 2
+        WEST = 0b0000_0100,     // 4
+        EAST = 0b0000_1000,     // 8
+        STRAIGHT_VERTICAL = NORTH | SOUTH,
+        STRAIGHT_HORIZONTAL = WEST | EAST,
+        NORTH_EAST = NORTH | EAST,
+        NORTH_WEST = NORTH | WEST,
+        SOUTH_EAST = SOUTH | EAST,
+        SOUTH_WEST = SOUTH | WEST,
+        All = STRAIGHT_HORIZONTAL | STRAIGHT_VERTICAL
+    }
+
+    public ROOM_TYPE roomType;
     public GameObject wallPrefab;
-    public GameObject doorPrefab;
+    public DoorController north;
+    public DoorController south;
+    public DoorController west;
+    public DoorController east;
 
     private int directions;
+    private int connectedDoors;
 
-    private void Start() {
-        this.directions = (int)type;
-        GenerateWalls();
+    private void Awake() {
+        this.directions = (int)roomType;
     }
 
     public void RemoveSpawnDirection(int direction) {
         this.directions ^= direction;
+        connectedDoors |= direction;
     }
 
-    private void GenerateWalls() {
-        Vector2 start = new Vector2(
-            -Mathf.FloorToInt(interiorSize.x / 2) - 1, 
-            -Mathf.FloorToInt(interiorSize.x / 2) - 1
-        );
-        // Top
-        for(int i = 0; i < interiorSize.x + 2; i++) {
-            if (i != Mathf.FloorToInt(interiorSize.x / 2) + 1 || (this.directions & 1) == 0) {
-                Instantiate(wallPrefab, start + new Vector2(i, 0), Quaternion.identity, transform);
-            } else {
-                Instantiate(doorPrefab, start + new Vector2(i, 0), Quaternion.identity, transform);
-            }
+    public void SealFakeDoors() {
+        if((this.connectedDoors & (int)ROOM_TYPE.NORTH) == 0) {
+            ReplaceDoorWithWall(north);
         }
-        // Bottom
-        for(int i = 0; i < interiorSize.x + 2; i++) {
-            if (i != Mathf.FloorToInt(interiorSize.x / 2) + 1 || (this.directions & 2) == 0) {
-                Instantiate(wallPrefab, start + new Vector2(i, interiorSize.y + 1), Quaternion.identity, transform);
-            } else {
-                Instantiate(doorPrefab, start + new Vector2(i, interiorSize.y + 1), Quaternion.identity, transform);
-            }
+        if((this.connectedDoors & (int)ROOM_TYPE.SOUTH) == 0) {
+            ReplaceDoorWithWall(south);
         }
-        //Side
-        for(int y = 0; y < interiorSize.y; y++){
-            if(y == Mathf.FloorToInt(interiorSize.y / 2) + 1){
-                if((this.directions & 4) != 0) {    // Left
-                    Instantiate(doorPrefab, start + new Vector2(0, y + 1), Quaternion.identity, transform);
-                }
-                if((this.directions & 8) != 0) {    // Right
-                    Instantiate(doorPrefab, start + new Vector2(interiorSize.x + 1, y + 1), Quaternion.identity, transform);
-                }
-            } else {
-                Instantiate(wallPrefab, start + new Vector2(0, y + 1), Quaternion.identity, transform);
-                Instantiate(wallPrefab, start + new Vector2(interiorSize.x + 1, y + 1), Quaternion.identity, transform);
-            }
+        if((this.connectedDoors & (int)ROOM_TYPE.WEST) == 0) {
+            ReplaceDoorWithWall(west);
         }
+        if((this.connectedDoors & (int)ROOM_TYPE.EAST) == 0) {
+            ReplaceDoorWithWall(east);
+        }
+    }
+
+    public int OpenDoors {
+        get { return this.directions; }
+    }
+
+    public bool isSurrounded {
+        get { return this.directions == 0; }
+    }
+
+    private void ReplaceDoorWithWall(DoorController dc) {
+        GameObject door = dc.gameObject;
+        Vector3 position = door.transform.position;
+        Instantiate(wallPrefab, position, Quaternion.identity, transform);
     }
 }

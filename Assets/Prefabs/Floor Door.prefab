@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5761098374459327693}
   - component: {fileID: 1039837263268496298}
   - component: {fileID: 7023852111646646466}
+  - component: {fileID: 6723355532986543609}
   m_Layer: 0
   m_Name: Floor Door
   m_TagString: Untagged
@@ -95,7 +96,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -111,3 +112,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6723355532986543609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4950334043742750382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c666a688ebf7da4996d5c816723b4a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
