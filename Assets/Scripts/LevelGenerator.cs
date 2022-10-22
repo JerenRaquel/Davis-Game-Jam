@@ -5,21 +5,22 @@ using System;
 
 public class LevelGenerator : MonoBehaviour
 {
+    #region Class Instance
     public static LevelGenerator instance = null;
-    private void InitializeInstance() {
-        if(instance == null){
+    private void CreateInstance()
+    {
+        if (instance == null)
             instance = this;
+        else
+            Destroy(this);
         }
-    }
+    #endregion
+    private void Awake() => CreateInstance();
 
     public uint maxRooms = 5;
     public RoomData[] rooms;
 
     private Dictionary<RoomData.ROOM_TYPE, List<RoomData>> roomMap;
-
-    private void Awake() {
-        InitializeInstance();
-    }
 
     private void Start() {
         this.roomMap = new Dictionary<RoomData.ROOM_TYPE, List<RoomData>>();
