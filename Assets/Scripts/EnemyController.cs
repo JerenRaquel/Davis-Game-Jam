@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour {
 
     public PathfinderController ai;
+    public HPController hpController;
     [Header("Settings")]
     public int maxHealth;
     public float bleedDelay;
@@ -59,6 +60,7 @@ public class EnemyController : MonoBehaviour {
 
     public void TakeDamage(int damage) {
         this.currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
+        UpdateHPBar();
     }
 
     public void HealDamage(int damage) {
@@ -68,6 +70,7 @@ public class EnemyController : MonoBehaviour {
             isStunned = true;
         }
         this.currentHealth = health;
+        UpdateHPBar();
     }
 
     public void MakeStronger() {
@@ -78,6 +81,11 @@ public class EnemyController : MonoBehaviour {
 
     private void Rebirth() {
         MakeStronger();
+    }
+
+    private void UpdateHPBar() {
+        this.hpController.UpdateValue(
+            Mathf.Clamp((float)this.currentHealth / this.maxHealth, 0, 1));
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
