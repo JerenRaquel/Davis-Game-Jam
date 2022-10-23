@@ -36,12 +36,12 @@ public class Astar : MonoBehaviour
     }
 
     public List<Vector2> GetPath(AstarProbe origin) {
+        if (origin == null) return null;
         if (Vector3.Distance(origin.transform.position, target.transform.position) <= range) {
             List<Vector2> data = new List<Vector2>();
             data.Add(target.transform.position);
             return data;
         }
-        if (origin == null) return null;
         if (probes == null) Debug.LogException(new MissingComponentException());
         ResetProbes();
         MinHeap<AstarProbe> openSet = new MinHeap<AstarProbe>(
