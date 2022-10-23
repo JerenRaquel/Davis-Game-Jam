@@ -51,6 +51,10 @@ public class EnemyController : MonoBehaviour {
         this.currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
     }
 
+    public void HealDamage(int damage) {
+        this.currentHealth = Mathf.Clamp(currentHealth + damage, 0, maxHealth);
+    }
+
     private IEnumerator MoveTowards(List<Vector2> pathData) {
         transform.position = new Vector3(pathData[0].x, pathData[0].y, 0);
         yield return new WaitForSeconds(speed);

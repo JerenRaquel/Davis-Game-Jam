@@ -7,6 +7,8 @@ public class AttackController : MonoBehaviour {
     public Transform orbitObject;
     public Animator animator;
     public SwordDetector swordDetector;
+    public GameObject projectilePrefab;
+    public Transform shootPoint;
 
     private void Update() {
         Vector3 orbitVec = Camera.main.WorldToScreenPoint(pivot.position);
@@ -24,13 +26,11 @@ public class AttackController : MonoBehaviour {
             if (ec == null) {
                 ec = swordDetector.enemy.GetComponentInParent<EnemyController>();
             }
-            ec.TakeDamage(damage);
+            ec.HealDamage(damage);
         }
     }
 
     public void Shoot(int damage) {
-
+        Instantiate(projectilePrefab, shootPoint);
     }
-
-
 }

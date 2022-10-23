@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Floor
+      name: Wall_Horizontal
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12870110a7c7fce48b55acc639cafd4c
-      internalID: -2123982812
+      spriteID: 380631fd947d8ab47abf537c568177d1
+      internalID: -1856914557
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wall_Horizontal
+      name: Vertical
       rect:
         serializedVersion: 2
         x: 32
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40631cf4eba8f634c87fe0b55b0e77f1
-      internalID: -1856914557
+      spriteID: c5ab432c609d493478367fa9245bc950
+      internalID: -777295581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wall Vertical
+      name: Wall_Top_Left
       rect:
         serializedVersion: 2
         x: 64
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72a75a89e3f9d1f4d9c40a3469afbe03
-      internalID: -740360326
+      spriteID: 70812176a5f6f3b4290c8f087412eb3a
+      internalID: -412225151
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wall_Top_Left
+      name: Wall_Top_Right
       rect:
         serializedVersion: 2
         x: 96
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1bc7cc501feee0459dfca5a1488a9f7
-      internalID: -412225151
+      spriteID: a66757680426fce47b40e40cf2196e0d
+      internalID: -106642374
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wall_Top_Right
+      name: Floor
       rect:
         serializedVersion: 2
         x: 128
@@ -215,35 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 221039f666eb07c4e879ed8100a0ea1a
-      internalID: -106642374
+      spriteID: 02f19e40697eb0c458619949e9aabcfd
+      internalID: -2123982812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wall_Bottom_Right
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fbcff820223ae0744b2739f153119dbb
-      internalID: -908532384
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Wall_Bottom_Left
+      name: Horizontal-Alt
       rect:
         serializedVersion: 2
         x: 0
@@ -257,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d11e80e6d106fc4a804670317858ba9
-      internalID: -121048344
+      spriteID: 0d1079cc4998e7047977135c0b34319d
+      internalID: 2101833921
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Horizontal-Alt
+      name: Vertical-Alt
       rect:
         serializedVersion: 2
         x: 32
@@ -278,8 +257,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 975d46e3521fb814f95045db2d2faaff
-      internalID: 2101833921
+      spriteID: 98d12a27b8a8b8042957ed29daf0b4d4
+      internalID: -4268215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wall_Bottom_Left
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20b8ec71aa02c774cb4d72f61d6c670e
+      internalID: -121048344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wall_Bottom_Right
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b27f1e94d9bf714439d45bc48752d5a5
+      internalID: -908532384
       vertices: []
       indices: 
       edges: []
@@ -298,11 +319,12 @@ TextureImporter:
       Wall_Bottom_Left: -121048344
       Wall_Horizontal: -1856914557
       Wall_Top_Right: -106642374
+      Vertical: -777295581
+      Vertical-Alt: -4268215
       Wall_Top_Left: -412225151
       Floor: -2123982812
       Wall_Bottom_Right: -908532384
       Horizontal-Alt: 2101833921
-      Wall Vertical: -740360326
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

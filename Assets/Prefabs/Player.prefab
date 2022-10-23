@@ -505,7 +505,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 0.9}
+  m_Size: {x: 0.6674595, y: 0.7481304}
   m_EdgeRadius: 0
 --- !u!114 &3857813453153425864
 MonoBehaviour:
@@ -610,3 +610,5 @@ MonoBehaviour:
   orbitObject: {fileID: 9151491958348390508}
   animator: {fileID: 5203972596298095657}
   swordDetector: {fileID: 3622501492650850771}
+  projectilePrefab: {fileID: 0}
+  shootPoint: {fileID: 0}
