@@ -5229,6 +5229,7 @@ MonoBehaviour:
   probe: {fileID: 7925783277342636865, guid: ab563b59997c0ab4c8fdd1d622f1e83e, type: 3}
   targetType: 0
   debug: 1
+  isWire: 1
   target: {fileID: 0}
 --- !u!1 &9004000239821847406
 GameObject:

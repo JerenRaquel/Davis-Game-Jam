@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetProbeBeacon : MonoBehaviour {
-    [Header("TEMP")]
     public Astar astar;
 
     private void OnTriggerEnter2D(Collider2D other) {

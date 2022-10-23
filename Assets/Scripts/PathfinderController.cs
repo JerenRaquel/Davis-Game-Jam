@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PathfinderController : MonoBehaviour {
-    [Header("TEMP!")]
-    public AstarProbe target;
     [Header("Settings")]
     public Gradient lineColors;
     public Vector2 lineWidth;
@@ -64,6 +62,12 @@ public class PathfinderController : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Probe")) {
+            this.currentProbePosition = other.GetComponent<AstarProbe>();
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other) {
         if (other.CompareTag("Probe")) {
             this.currentProbePosition = other.GetComponent<AstarProbe>();
         }

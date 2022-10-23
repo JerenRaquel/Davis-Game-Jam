@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     public HPController playerHPBar;
-    public Animator animator;
+    public AttackController attackController;
+    public TargetProbeBeacon targetProbe;
 
     [Header("Settings")]
     public float speed = 6f;
@@ -28,13 +29,17 @@ public class PlayerController : MonoBehaviour {
     public float dashDelay;
     public int maxHealth;
     public int Health { get { return this.currentHealth; } }
+    public int meleeDamage;
+    public float meleeDelay;
 
     private ControlMap inputMap;
     private Rigidbody2D rb;
     private Vector2 direction;
     private float time;
+    private float meleeTime;
     private bool dashEnabled = true;
     private bool isDashing = false;
+    private bool isAttacking = false;
     private int currentHealth;
 
     private void OnEnable() {
@@ -71,9 +76,14 @@ public class PlayerController : MonoBehaviour {
                 transform.localScale = new Vector3(-1, 1, 1);
             }
 
-            if (time + dashDelay <= Time.time && !isDashing) {
+            if (time + dashDelay <= Time.time) {
                 time = Time.time;
                 dashEnabled = true;
+            }
+
+            if (meleeTime + meleeDelay <= Time.time && !isAttacking) {
+                meleeTime = Time.time;
+                isAttacking = true;
             }
         }
     }
@@ -95,7 +105,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void OnSwing() {
-        animator.SetTrigger("Swing");
+        attackController.AttackEnemy(meleeDamage);
+        isAttacking = false;
     }
 
     private IEnumerator Dash() {

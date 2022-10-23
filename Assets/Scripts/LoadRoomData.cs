@@ -6,10 +6,17 @@ public class LoadRoomData : MonoBehaviour {
     public Astar astar;
     public EnemySpawner spawner;
 
+    private bool isSpawned = false;
+
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
-            other.GetComponent<TargetProbeBeacon>().astar = astar;
-            spawner.SwapAIState(true);
+            PlayerController.instance.targetProbe.astar = astar;
+            if (!isSpawned) {
+                //! ITS NOW A FEATURE!
+                // isSpawned = true;
+                spawner.Spawn();
+                spawner.SwapAIState(true);
+            }
         }
     }
 

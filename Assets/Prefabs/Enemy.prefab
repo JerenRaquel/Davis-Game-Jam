@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 3122778788474346596}
   m_Layer: 0
   m_Name: AI
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,7 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41c7a247ef97e2946a6c081a05499a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   lineColors:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0.8378444, a: 1}
@@ -193,7 +192,7 @@ GameObject:
   - component: {fileID: 8690994838649750040}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -265,6 +264,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ai: {fileID: 3122778788474346596}
-  maxHealth: 10
+  maxHealth: 50
+  bleedDelay: 1
+  bleedDamage: 2
   physicalDamage: 2
   attackDelay: 2
+  speed: 0.25

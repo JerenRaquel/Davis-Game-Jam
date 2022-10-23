@@ -28,6 +28,8 @@ public class EnemySpawner : MonoBehaviour {
     }
 
     public void SwapAIState(bool state) {
-        activeEnemy.GetComponent<EnemyController>().AIState = state;
+        if (activeEnemy != null) {
+            activeEnemy.GetComponent<EnemyController>().AIState = state;
+        }
     }
 }

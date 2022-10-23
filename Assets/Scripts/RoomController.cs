@@ -18,6 +18,7 @@ public class RoomController : MonoBehaviour
         All = STRAIGHT_HORIZONTAL | STRAIGHT_VERTICAL
     }
 
+    [Header("Room Data")]
     public ROOM_TYPE roomType;
     public GameObject wallPrefabNorth;
     public GameObject wallPrefabSouth;

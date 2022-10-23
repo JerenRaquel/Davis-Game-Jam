@@ -13,7 +13,7 @@ public class AstarProbe : MonoBehaviour
     public float FCost { get; set; } = float.MaxValue;
     public Vector2Int Index { get; set; }
 
-    public void DrawDebug(){
+    public void DrawDebug(bool isWire) {
         var prevColor = Gizmos.color;
         if(State == PROBE_STATE.EMPTY){
             Gizmos.color = Color.blue;
@@ -22,7 +22,11 @@ public class AstarProbe : MonoBehaviour
         } else {
             Gizmos.color = Color.red;
         }
-        Gizmos.DrawCube(transform.position, new Vector3(1, 1, 0));
+        if (isWire) {
+            Gizmos.DrawWireCube(transform.position, new Vector3(1, 1, 0));
+        } else {
+            Gizmos.DrawCube(transform.position, new Vector3(1, 1, 0));
+        }
         Gizmos.color = prevColor;
     }
 

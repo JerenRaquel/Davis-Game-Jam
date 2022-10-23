@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour {
     public int bleedDamage = 2;
     public int physicalDamage;
     public float attackDelay;
+    public float speed = 1f;
 
     public int Health { get { return currentHealth; } }
     public bool AIState { get; set; } = false;
@@ -18,16 +19,27 @@ public class EnemyController : MonoBehaviour {
     private int currentHealth;
     private float time;
     private float bleedTime;
+    private bool isMoving = false;
+
+    private void Start() {
+        currentHealth = maxHealth;
+    }
 
     private void FixedUpdate() {
-        if (AIState) {
+        if (AIState && !isMoving) {
             List<Vector2> pathData = ai.FindPath();
             if (pathData == null) return;
-            MoveTowards(pathData);
+            isMoving = true;
+            StartCoroutine(MoveTowards(pathData));
         }
         if (AIState && bleedTime + bleedDelay < Time.time) {
             bleedTime = Time.time;
             TakeDamage(bleedDamage);
+        }
+
+        if (currentHealth == 0) {
+            Debug.Log("DEADGE");
+            Destroy(this.gameObject);
         }
     }
 
@@ -39,8 +51,11 @@ public class EnemyController : MonoBehaviour {
         this.currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
     }
 
-    private void MoveTowards(List<Vector2> pathData) {
-
+    private IEnumerator MoveTowards(List<Vector2> pathData) {
+        transform.position = new Vector3(pathData[0].x, pathData[0].y, 0);
+        yield return new WaitForSeconds(speed);
+        isMoving = false;
+        yield return new WaitForEndOfFrame();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

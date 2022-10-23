@@ -10,6 +10,7 @@ public class Astar : MonoBehaviour
     public GameObject probe;
     public TARGET targetType = TARGET.Player;
     public bool debug = false;
+    public bool isWire = false;
     public AstarProbe target = null;
 
     private AstarProbe[,] probes = null;
@@ -28,12 +29,13 @@ public class Astar : MonoBehaviour
     private void OnDrawGizmos() {
         if(debug && probes != null){
             foreach(AstarProbe ap in probes) {
-                ap.DrawDebug();
+                ap.DrawDebug(isWire);
             }
         }
     }
 
     public List<Vector2> GetPath(AstarProbe origin) {
+        if (origin == null) return null;
         if (probes == null) Debug.LogException(new MissingComponentException());
         ResetProbes();
         MinHeap<AstarProbe> openSet = new MinHeap<AstarProbe>(
@@ -99,6 +101,7 @@ public class Astar : MonoBehaviour
                 path.Add(coords);
             }
         }
+        path.Add(current.transform.position);
         return path;
     }
 
