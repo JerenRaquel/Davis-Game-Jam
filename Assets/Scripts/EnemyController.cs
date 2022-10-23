@@ -12,6 +12,9 @@ public class EnemyController : MonoBehaviour {
     public int physicalDamage;
     public float attackDelay;
     public float speed = 1f;
+    public float stunDelay;
+    [Header("'100 + stunRate'")]
+    public float stunRate;
 
     public int Health { get { return currentHealth; } }
     public bool AIState { get; set; } = false;
@@ -19,14 +22,16 @@ public class EnemyController : MonoBehaviour {
     private int currentHealth;
     private float time;
     private float bleedTime;
+    private float stunTime;
     private bool isMoving = false;
+    private bool isStunned = false;
 
     private void Start() {
         currentHealth = maxHealth;
     }
 
     private void FixedUpdate() {
-        if (AIState && !isMoving) {
+        if (AIState && !isMoving && !isStunned) {
             List<Vector2> pathData = ai.FindPath();
             if (pathData == null) return;
             isMoving = true;
@@ -35,6 +40,11 @@ public class EnemyController : MonoBehaviour {
         if (AIState && bleedTime + bleedDelay < Time.time) {
             bleedTime = Time.time;
             TakeDamage(bleedDamage);
+        }
+
+        if (isStunned && stunTime + stunDelay <= Time.time) {
+            stunTime = Time.time;
+            isStunned = false;
         }
 
         if (currentHealth == 0) {
@@ -51,7 +61,11 @@ public class EnemyController : MonoBehaviour {
     }
 
     public void HealDamage(int damage) {
-        this.currentHealth = Mathf.Clamp(currentHealth + damage, 0, maxHealth);
+        int health = currentHealth + damage;
+        if (((float)health / maxHealth) - 100 >= stunRate) {
+            isStunned = true;
+        }
+        this.currentHealth = health;
     }
 
     public void MakeStronger() {

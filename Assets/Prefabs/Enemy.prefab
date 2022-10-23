@@ -270,3 +270,5 @@ MonoBehaviour:
   physicalDamage: 2
   attackDelay: 5
   speed: 0.5
+  stunDelay: 2
+  stunRate: 15
