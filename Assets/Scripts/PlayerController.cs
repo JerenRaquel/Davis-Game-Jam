@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public HPController playerHPBar;
+    public Animator animator;
 
     [Header("Settings")]
     public float speed = 6f;
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour {
         inputMap.Combat.Move.canceled += ctx => OnMove(ctx);
         inputMap.Combat.Dash.performed += _ => OnDash();
         inputMap.Combat.Dash.canceled += _ => OnDash();
+        inputMap.Combat.Swing.performed += _ => OnSwing();
     }
 
     private void OnDisable() {
@@ -49,6 +51,7 @@ public class PlayerController : MonoBehaviour {
         inputMap.Combat.Move.canceled -= ctx => OnMove(ctx);
         inputMap.Combat.Dash.performed -= _ => OnDash();
         inputMap.Combat.Dash.canceled -= _ => OnDash();
+        inputMap.Combat.Swing.performed -= _ => OnSwing();
         inputMap.Disable();
     }
 
@@ -62,6 +65,11 @@ public class PlayerController : MonoBehaviour {
     private void FixedUpdate() {
         if (!isDashing) {
             transform.position = transform.position + new Vector3(direction.x, direction.y, 0) * Time.deltaTime * speed;
+            if (direction.x > 0) {
+                transform.localScale = new Vector3(1, 1, 1);
+            } else if (direction.x < 0) {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
 
             if (time + dashDelay <= Time.time && !isDashing) {
                 time = Time.time;
@@ -84,6 +92,10 @@ public class PlayerController : MonoBehaviour {
         if (direction == Vector2.zero) return;
         dashEnabled = false;
         StartCoroutine(Dash());
+    }
+
+    private void OnSwing() {
+        animator.SetTrigger("Swing");
     }
 
     private IEnumerator Dash() {

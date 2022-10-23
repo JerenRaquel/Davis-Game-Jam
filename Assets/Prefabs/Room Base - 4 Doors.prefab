@@ -3230,7 +3230,7 @@ GameObject:
   - component: {fileID: 280465097728999697}
   m_Layer: 0
   m_Name: Room Context
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5205,7 +5205,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomType: 15
-  wallPrefab: {fileID: 5960992936063414325, guid: 8ec5f45034537ca4caed813ca7f36c19, type: 3}
+  wallPrefabNorth: {fileID: 5960992936063414325, guid: 14b1148ed9dc34f42be3abe3c49972d8, type: 3}
+  wallPrefabSouth: {fileID: 5960992936063414325, guid: 8ec5f45034537ca4caed813ca7f36c19, type: 3}
+  wallPrefabWest: {fileID: 5960992936063414325, guid: 36702f0418411c0479081999a21a54c7, type: 3}
+  wallPrefabEast: {fileID: 5960992936063414325, guid: 8c8f97960a6815e449872f69ac150b6e, type: 3}
   north: {fileID: 6067551598420266974}
   south: {fileID: 3835088777505153595}
   west: {fileID: 5187650177677251840}

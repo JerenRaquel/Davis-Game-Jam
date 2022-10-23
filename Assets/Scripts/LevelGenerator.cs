@@ -130,8 +130,8 @@ public class LevelGenerator : MonoBehaviour
         // MAGIC! -- convert packed int bits to array of direction choices
         List<RoomController.ROOM_TYPE> directions = new List<RoomController.ROOM_TYPE>();
         for(int i = 0; i < 4; i++){
-            if((packedData & (1 << i)) != 0){ 
-                directions.Add((RoomController.ROOM_TYPE)(packedData & (1 << i)));
+            if((packedData & (1 << i)) != 0){
+                directions.Add((RoomController.ROOM_TYPE)(1 << i));
             }
         }
         RoomController.ROOM_TYPE[] result = directions.ToArray();

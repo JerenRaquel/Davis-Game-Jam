@@ -44,6 +44,24 @@ public partial class @ControlMap : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Swing"",
+                    ""type"": ""Button"",
+                    ""id"": ""fc50cba1-eafc-478c-9b18-a9f291e14be3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""32891a44-825d-46e6-b3ac-386ad0e18df2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -64,7 +82,7 @@ public partial class @ControlMap : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -75,7 +93,7 @@ public partial class @ControlMap : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -86,7 +104,7 @@ public partial class @ControlMap : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -97,7 +115,7 @@ public partial class @ControlMap : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -108,20 +126,83 @@ public partial class @ControlMap : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""702784a7-ee8b-4af6-8f0d-b45cb3f0ea1b"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Swing"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""860b7e8b-60d9-4444-8bc9-89517d711611"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Swing"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c185dc7f-1027-40de-ac84-c8b5e01ee8c4"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ca53102-b3ae-4859-bde6-080524ee7a6a"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Keyboard and Mouse"",
+            ""bindingGroup"": ""Keyboard and Mouse"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // Combat
         m_Combat = asset.FindActionMap("Combat", throwIfNotFound: true);
         m_Combat_Move = m_Combat.FindAction("Move", throwIfNotFound: true);
         m_Combat_Dash = m_Combat.FindAction("Dash", throwIfNotFound: true);
+        m_Combat_Swing = m_Combat.FindAction("Swing", throwIfNotFound: true);
+        m_Combat_Shoot = m_Combat.FindAction("Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -183,12 +264,16 @@ public partial class @ControlMap : IInputActionCollection2, IDisposable
     private ICombatActions m_CombatActionsCallbackInterface;
     private readonly InputAction m_Combat_Move;
     private readonly InputAction m_Combat_Dash;
+    private readonly InputAction m_Combat_Swing;
+    private readonly InputAction m_Combat_Shoot;
     public struct CombatActions
     {
         private @ControlMap m_Wrapper;
         public CombatActions(@ControlMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Combat_Move;
         public InputAction @Dash => m_Wrapper.m_Combat_Dash;
+        public InputAction @Swing => m_Wrapper.m_Combat_Swing;
+        public InputAction @Shoot => m_Wrapper.m_Combat_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_Combat; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -204,6 +289,12 @@ public partial class @ControlMap : IInputActionCollection2, IDisposable
                 @Dash.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnDash;
+                @Swing.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnSwing;
+                @Swing.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnSwing;
+                @Swing.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnSwing;
+                @Shoot.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnShoot;
             }
             m_Wrapper.m_CombatActionsCallbackInterface = instance;
             if (instance != null)
@@ -214,13 +305,30 @@ public partial class @ControlMap : IInputActionCollection2, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @Swing.started += instance.OnSwing;
+                @Swing.performed += instance.OnSwing;
+                @Swing.canceled += instance.OnSwing;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
             }
         }
     }
     public CombatActions @Combat => new CombatActions(this);
+    private int m_KeyboardandMouseSchemeIndex = -1;
+    public InputControlScheme KeyboardandMouseScheme
+    {
+        get
+        {
+            if (m_KeyboardandMouseSchemeIndex == -1) m_KeyboardandMouseSchemeIndex = asset.FindControlSchemeIndex("Keyboard and Mouse");
+            return asset.controlSchemes[m_KeyboardandMouseSchemeIndex];
+        }
+    }
     public interface ICombatActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnSwing(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
 }

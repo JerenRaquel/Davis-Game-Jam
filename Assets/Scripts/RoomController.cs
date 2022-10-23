@@ -19,7 +19,10 @@ public class RoomController : MonoBehaviour
     }
 
     public ROOM_TYPE roomType;
-    public GameObject wallPrefab;
+    public GameObject wallPrefabNorth;
+    public GameObject wallPrefabSouth;
+    public GameObject wallPrefabWest;
+    public GameObject wallPrefabEast;
     public DoorController north;
     public DoorController south;
     public DoorController west;
@@ -39,16 +42,16 @@ public class RoomController : MonoBehaviour
 
     public void SealFakeDoors() {
         if((this.connectedDoors & (int)ROOM_TYPE.NORTH) == 0) {
-            ReplaceDoorWithWall(north);
+            ReplaceDoorWithWall(north, wallPrefabNorth);
         }
         if((this.connectedDoors & (int)ROOM_TYPE.SOUTH) == 0) {
-            ReplaceDoorWithWall(south);
+            ReplaceDoorWithWall(south, wallPrefabSouth);
         }
         if((this.connectedDoors & (int)ROOM_TYPE.WEST) == 0) {
-            ReplaceDoorWithWall(west);
+            ReplaceDoorWithWall(west, wallPrefabWest);
         }
         if((this.connectedDoors & (int)ROOM_TYPE.EAST) == 0) {
-            ReplaceDoorWithWall(east);
+            ReplaceDoorWithWall(east, wallPrefabEast);
         }
     }
 
@@ -60,10 +63,11 @@ public class RoomController : MonoBehaviour
         get { return this.directions == 0; }
     }
 
-    private void ReplaceDoorWithWall(DoorController dc) {
+    private void ReplaceDoorWithWall(DoorController dc, GameObject prefab) {
         if (dc == null) return;
         GameObject door = dc.gameObject;
         Vector3 position = door.transform.position;
-        Instantiate(wallPrefab, position, Quaternion.identity, transform);
+        Instantiate(prefab, position, Quaternion.identity, transform);
+        Destroy(dc.gameObject);
     }
 }
