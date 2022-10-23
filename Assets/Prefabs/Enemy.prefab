@@ -268,5 +268,5 @@ MonoBehaviour:
   bleedDelay: 1
   bleedDamage: 2
   physicalDamage: 2
-  attackDelay: 2
+  attackDelay: 5
   speed: 0.5
