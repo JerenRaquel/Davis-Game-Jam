@@ -638,10 +638,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3857813453153425864, guid: dc6111f805eb5244f843a9a7ca4c7ec8, type: 3}
-      propertyPath: meleeDamage
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3857813453153425864, guid: dc6111f805eb5244f843a9a7ca4c7ec8, type: 3}
       propertyPath: playerHPBar
       value: 
       objectReference: {fileID: 947226322}

@@ -12,8 +12,8 @@ public class LoadRoomData : MonoBehaviour {
         if (other.CompareTag("Player")) {
             PlayerController.instance.targetProbe.astar = astar;
             if (!isSpawned) {
-                //! ITS NOW A FEATURE!
-                // isSpawned = true;
+                ////  ITS NOW A FEATURE!
+                isSpawned = true;
                 spawner.Spawn();
                 spawner.SwapAIState(true);
             }

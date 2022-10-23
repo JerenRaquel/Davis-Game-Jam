@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour {
     private float time;
     private float bleedTime;
     private float stunTime;
-    private bool isMoving = false;
+    private float moveTime;
     private bool isStunned = false;
 
     private void Start() {
@@ -31,11 +31,12 @@ public class EnemyController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (AIState && !isMoving && !isStunned) {
+        if (AIState && !isStunned && moveTime + speed <= Time.time) {
             List<Vector2> pathData = ai.FindPath();
             if (pathData == null) return;
-            isMoving = true;
-            StartCoroutine(MoveTowards(pathData));
+            int index = 0; //pathData.Count - 1;
+            transform.position = new Vector3(pathData[index].x, pathData[index].y, 0);
+            moveTime = Time.time;
         }
         if (AIState && bleedTime + bleedDelay < Time.time) {
             bleedTime = Time.time;
@@ -62,7 +63,8 @@ public class EnemyController : MonoBehaviour {
 
     public void HealDamage(int damage) {
         int health = currentHealth + damage;
-        if (((float)health / maxHealth) - 100 >= stunRate) {
+        int overHeal = health - maxHealth;
+        if (overHeal >= stunRate) {
             isStunned = true;
         }
         this.currentHealth = health;
@@ -78,15 +80,10 @@ public class EnemyController : MonoBehaviour {
         MakeStronger();
     }
 
-    private IEnumerator MoveTowards(List<Vector2> pathData) {
-        transform.position = new Vector3(pathData[0].x, pathData[0].y, 0);
-        yield return new WaitForSeconds(speed);
-        isMoving = false;
-        yield return new WaitForEndOfFrame();
-    }
-
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
+            if (time + attackDelay > Time.time) return;
+            time = Time.time;
             PlayerController.instance.TakeDamage(physicalDamage);
         }
     }

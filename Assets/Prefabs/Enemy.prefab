@@ -269,6 +269,6 @@ MonoBehaviour:
   bleedDamage: 2
   physicalDamage: 2
   attackDelay: 5
-  speed: 0.5
-  stunDelay: 2
+  speed: 1
+  stunDelay: 5
   stunRate: 15

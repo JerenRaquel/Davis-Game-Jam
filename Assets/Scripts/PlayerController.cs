@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour {
 
     public void TakeDamage(int damage) {
         this.currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
-        playerHPBar.UpdateValue(this.currentHealth / maxHealth);
+        playerHPBar.UpdateValue((float)this.currentHealth / maxHealth);
     }
 
     private void OnMove(InputAction.CallbackContext ctx) {

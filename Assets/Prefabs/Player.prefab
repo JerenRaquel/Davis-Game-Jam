@@ -675,7 +675,7 @@ MonoBehaviour:
   dashTime: 0.05
   dashDelay: 1.5
   maxHealth: 100
-  meleeDamage: 10
+  meleeDamage: 20
   meleeDelay: 0.5
   shootDamage: 20
   shootingDelay: 0.5
