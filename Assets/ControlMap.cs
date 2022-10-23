@@ -62,6 +62,15 @@ public partial class @ControlMap : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""9af81b21-2a98-4d5e-ad53-5e7ac587730d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -174,6 +183,17 @@ public partial class @ControlMap : IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""97cb1646-584c-4daa-973e-b0731452eb13"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -203,6 +223,7 @@ public partial class @ControlMap : IInputActionCollection2, IDisposable
         m_Combat_Dash = m_Combat.FindAction("Dash", throwIfNotFound: true);
         m_Combat_Swing = m_Combat.FindAction("Swing", throwIfNotFound: true);
         m_Combat_Shoot = m_Combat.FindAction("Shoot", throwIfNotFound: true);
+        m_Combat_Pause = m_Combat.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -266,6 +287,7 @@ public partial class @ControlMap : IInputActionCollection2, IDisposable
     private readonly InputAction m_Combat_Dash;
     private readonly InputAction m_Combat_Swing;
     private readonly InputAction m_Combat_Shoot;
+    private readonly InputAction m_Combat_Pause;
     public struct CombatActions
     {
         private @ControlMap m_Wrapper;
@@ -274,6 +296,7 @@ public partial class @ControlMap : IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_Combat_Dash;
         public InputAction @Swing => m_Wrapper.m_Combat_Swing;
         public InputAction @Shoot => m_Wrapper.m_Combat_Shoot;
+        public InputAction @Pause => m_Wrapper.m_Combat_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Combat; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -295,6 +318,9 @@ public partial class @ControlMap : IInputActionCollection2, IDisposable
                 @Shoot.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnShoot;
+                @Pause.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_CombatActionsCallbackInterface = instance;
             if (instance != null)
@@ -311,6 +337,9 @@ public partial class @ControlMap : IInputActionCollection2, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -330,5 +359,6 @@ public partial class @ControlMap : IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnSwing(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

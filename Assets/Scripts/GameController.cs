@@ -16,8 +16,13 @@ public class GameController : MonoBehaviour {
     private void Awake() => CreateInstance();
 
     [HideInInspector] public EnemySpawner activeSpawner = null;
+    public AudioSource audioSource;
     public GameObject gameoverScreen;
     public GameObject winScreen;
+
+    private void Start() {
+        audioSource.Play();
+    }
 
     public void GameOver() {
         Pause();
