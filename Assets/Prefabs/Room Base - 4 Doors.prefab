@@ -5226,6 +5226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSize: {x: 7, y: 7}
+  range: 0.5
   probe: {fileID: 7925783277342636865, guid: ab563b59997c0ab4c8fdd1d622f1e83e, type: 3}
   targetType: 0
   debug: 1

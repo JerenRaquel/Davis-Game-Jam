@@ -38,8 +38,7 @@ public class EnemyController : MonoBehaviour {
         }
 
         if (currentHealth == 0) {
-            Debug.Log("DEADGE");
-            Destroy(this.gameObject);
+            Rebirth();
         }
     }
 
@@ -55,6 +54,16 @@ public class EnemyController : MonoBehaviour {
         this.currentHealth = Mathf.Clamp(currentHealth + damage, 0, maxHealth);
     }
 
+    public void MakeStronger() {
+        this.maxHealth *= 2;
+        this.currentHealth = this.maxHealth;
+        this.physicalDamage *= 2;
+    }
+
+    private void Rebirth() {
+        MakeStronger();
+    }
+
     private IEnumerator MoveTowards(List<Vector2> pathData) {
         transform.position = new Vector3(pathData[0].x, pathData[0].y, 0);
         yield return new WaitForSeconds(speed);
@@ -64,9 +73,15 @@ public class EnemyController : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
+            PlayerController.instance.TakeDamage(physicalDamage);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other) {
+        if (other.CompareTag("Player")) {
             if (time + attackDelay > Time.time) return;
             time = Time.time;
-            other.GetComponent<PlayerController>().TakeDamage(physicalDamage);
+            PlayerController.instance.TakeDamage(physicalDamage);
         }
     }
 }

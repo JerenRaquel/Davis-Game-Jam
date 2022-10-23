@@ -31,6 +31,8 @@ public class AttackController : MonoBehaviour {
     }
 
     public void Shoot(int damage) {
-        Instantiate(projectilePrefab, shootPoint);
+        GameObject go = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+        go.GetComponent<BulletController>().damage = damage;
+        go.transform.rotation = pivot.rotation;
     }
 }

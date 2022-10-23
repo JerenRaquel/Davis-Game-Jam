@@ -72,4 +72,6 @@ public class PathfinderController : MonoBehaviour {
             this.currentProbePosition = other.GetComponent<AstarProbe>();
         }
     }
+
+    public Astar AStar { get { return this.astar; } }
 }

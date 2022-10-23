@@ -7,6 +7,7 @@ public class Astar : MonoBehaviour
     public enum TARGET { Player, Nearest_Door }
 
     public Vector2Int gridSize;
+    public float range;
     public GameObject probe;
     public TARGET targetType = TARGET.Player;
     public bool debug = false;
@@ -35,6 +36,11 @@ public class Astar : MonoBehaviour
     }
 
     public List<Vector2> GetPath(AstarProbe origin) {
+        if (Vector3.Distance(origin.transform.position, target.transform.position) <= range) {
+            List<Vector2> data = new List<Vector2>();
+            data.Add(target.transform.position);
+            return data;
+        }
         if (origin == null) return null;
         if (probes == null) Debug.LogException(new MissingComponentException());
         ResetProbes();

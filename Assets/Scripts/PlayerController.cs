@@ -31,15 +31,19 @@ public class PlayerController : MonoBehaviour {
     public int Health { get { return this.currentHealth; } }
     public int meleeDamage;
     public float meleeDelay;
+    public int shootDamage;
+    public float shootingDelay;
 
     private ControlMap inputMap;
     private Rigidbody2D rb;
     private Vector2 direction;
     private float time;
     private float meleeTime;
+    private float shootTime;
     private bool dashEnabled = true;
     private bool isDashing = false;
     private bool isAttacking = false;
+    private bool isFiring = false;
     private int currentHealth;
 
     private void OnEnable() {
@@ -49,6 +53,7 @@ public class PlayerController : MonoBehaviour {
         inputMap.Combat.Dash.performed += _ => OnDash();
         inputMap.Combat.Dash.canceled += _ => OnDash();
         inputMap.Combat.Swing.performed += _ => OnSwing();
+        inputMap.Combat.Shoot.performed += _ => OnShoot();
     }
 
     private void OnDisable() {
@@ -57,6 +62,7 @@ public class PlayerController : MonoBehaviour {
         inputMap.Combat.Dash.performed -= _ => OnDash();
         inputMap.Combat.Dash.canceled -= _ => OnDash();
         inputMap.Combat.Swing.performed -= _ => OnSwing();
+        inputMap.Combat.Shoot.performed -= _ => OnShoot();
         inputMap.Disable();
     }
 
@@ -85,6 +91,11 @@ public class PlayerController : MonoBehaviour {
                 meleeTime = Time.time;
                 isAttacking = true;
             }
+
+            if (shootTime + shootingDelay <= Time.time && !isFiring) {
+                shootTime = Time.time;
+                isFiring = true;
+            }
         }
     }
 
@@ -105,8 +116,15 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void OnSwing() {
+        if (!isAttacking) return;
         attackController.AttackEnemy(meleeDamage);
         isAttacking = false;
+    }
+
+    private void OnShoot() {
+        if (!isFiring) return;
+        attackController.Shoot(shootDamage);
+        isFiring = false;
     }
 
     private IEnumerator Dash() {
