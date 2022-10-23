@@ -717,8 +717,8 @@ MonoBehaviour:
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0.9056604, g: 0.48273405, b: 0.5741757, a: 1}
-  m_Intensity: 1.5
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -1587,7 +1587,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1576378195
 Transform:
   m_ObjectHideFlags: 0
@@ -2065,6 +2065,10 @@ PrefabInstance:
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 7220064389628258924, guid: 03a1b78eea856c64697d27f0b62621d9, type: 3}
+    - target: {fileID: 1158752008131676957, guid: dc6111f805eb5244f843a9a7ca4c7ec8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3857813452132007555, guid: dc6111f805eb5244f843a9a7ca4c7ec8, type: 3}
       propertyPath: astar
       value: 
