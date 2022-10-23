@@ -26,14 +26,7 @@ public class PlayerController : MonoBehaviour {
     public float dashTime;
     public float dashDelay;
     public int maxHealth;
-
-    public int Health {
-        get { return this.currentHealth; }
-        set {
-            this.currentHealth = Mathf.Clamp(value, 0, maxHealth);
-            playerHPBar.UpdateValue(this.currentHealth / maxHealth);
-        }
-    }
+    public int Health { get { return this.currentHealth; } }
 
     private ControlMap inputMap;
     private Rigidbody2D rb;
@@ -75,6 +68,11 @@ public class PlayerController : MonoBehaviour {
                 dashEnabled = true;
             }
         }
+    }
+
+    public void TakeDamage(int damage) {
+        this.currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
+        playerHPBar.UpdateValue(this.currentHealth / maxHealth);
     }
 
     private void OnMove(InputAction.CallbackContext ctx) {

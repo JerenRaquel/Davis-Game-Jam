@@ -156,7 +156,7 @@ MonoBehaviour:
   maxRooms: 5
   spacing: 9
   rooms:
-  - {fileID: 1379109553968894348, guid: 4dae6dd6587e1794cb1f9dab314b8898, type: 3}
+  - {fileID: 8805090959271384823, guid: 5a32df97ae512f64a8d0b472461f9f49, type: 3}
 --- !u!4 &259165128
 Transform:
   m_ObjectHideFlags: 0
@@ -1005,7 +1005,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41c7a247ef97e2946a6c081a05499a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  astar: {fileID: 0}
   target: {fileID: 0}
   lineColors:
     serializedVersion: 2

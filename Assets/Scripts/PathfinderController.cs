@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PathfinderController : MonoBehaviour {
     [Header("TEMP!")]
-    public Astar astar;
     public AstarProbe target;
     [Header("Settings")]
     public Gradient lineColors;
@@ -14,6 +13,7 @@ public class PathfinderController : MonoBehaviour {
     public bool debug = false;
     public bool debugDynamic = false;
 
+    private Astar astar;
     private Vector3 pastLocation;
     private AstarProbe currentProbePosition;
 
@@ -40,6 +40,15 @@ public class PathfinderController : MonoBehaviour {
             debug = false;
             CreateLinePath();
         }
+    }
+
+    public List<Vector2> FindPath() {
+        if (astar == null) return null;
+        return astar.GetPath(currentProbePosition);
+    }
+
+    public void LinkAStar(Astar astar) {
+        this.astar = astar;
     }
 
     private void CreateLinePath() {
