@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enableGenerationOnStart: 1
   maxRooms: 5
-  spacing: 9
+  spacing: 10
   rooms:
   - {fileID: 8805090959271384823, guid: 5a32df97ae512f64a8d0b472461f9f49, type: 3}
 --- !u!4 &259165128
