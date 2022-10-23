@@ -263,6 +263,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Horizontal-Alt
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 975d46e3521fb814f95045db2d2faaff
+      internalID: 2101833921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -280,6 +301,7 @@ TextureImporter:
       Wall_Top_Left: -412225151
       Floor: -2123982812
       Wall_Bottom_Right: -908532384
+      Horizontal-Alt: 2101833921
       Wall Vertical: -740360326
   spritePackingTag: 
   pSDRemoveMatte: 0

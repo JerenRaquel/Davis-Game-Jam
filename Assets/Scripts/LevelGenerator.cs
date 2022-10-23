@@ -89,7 +89,7 @@ public class LevelGenerator : MonoBehaviour
             // Connect the doors
             chosen.prev.RemoveSpawnDirection((int)chosen.direction);
             RoomController rc = SpawnRoom(
-                chosen.room, (position * 8) + new Vector2(chosen.prev.transform.position.x, chosen.prev.transform.position.y));
+                chosen.room, (position * spacing) + new Vector2(chosen.prev.transform.position.x, chosen.prev.transform.position.y));
             rc.RemoveSpawnDirection((int)GetOppositeRoomDirection(chosen.direction));
             // Add room to rooms that need to be connected
             this.openList.Add(rc);
