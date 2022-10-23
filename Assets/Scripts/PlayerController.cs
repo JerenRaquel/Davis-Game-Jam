@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour {
         inputMap = new ControlMap();
     }
 
+    public HPController playerHPBar;
+
     [Header("Settings")]
     public float speed = 6f;
     public float dashForce = 2f;
@@ -25,9 +27,12 @@ public class PlayerController : MonoBehaviour {
     public float dashDelay;
     public int maxHealth;
 
-    public int Healh {
+    public int Health {
         get { return this.currentHealth; }
-        set { this.currentHealth = Mathf.Clamp(value, 0, maxHealth); }
+        set {
+            this.currentHealth = Mathf.Clamp(value, 0, maxHealth);
+            playerHPBar.UpdateValue(this.currentHealth / maxHealth);
+        }
     }
 
     private ControlMap inputMap;
@@ -58,6 +63,7 @@ public class PlayerController : MonoBehaviour {
         time = Time.time;
         rb = this.GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
+        playerHPBar.UpdateValue(this.currentHealth / maxHealth);
     }
 
     private void FixedUpdate() {

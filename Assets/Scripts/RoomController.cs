@@ -61,6 +61,7 @@ public class RoomController : MonoBehaviour
     }
 
     private void ReplaceDoorWithWall(DoorController dc) {
+        if (dc == null) return;
         GameObject door = dc.gameObject;
         Vector3 position = door.transform.position;
         Instantiate(wallPrefab, position, Quaternion.identity, transform);
