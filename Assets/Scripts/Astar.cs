@@ -20,8 +20,8 @@ public class Astar : MonoBehaviour
 
     private void Start() {
         CreateGrid(
-            new Vector2(-Mathf.FloorToInt(gridSize.x / 2),
-            -Mathf.FloorToInt(gridSize.y / 2))
+            new Vector2(-Mathf.FloorToInt(gridSize.x / 2) + transform.position.x,
+            -Mathf.FloorToInt(gridSize.y / 2) + transform.position.y)
         );
     }
 

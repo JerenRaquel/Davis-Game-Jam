@@ -7,6 +7,8 @@ public class EnemyController : MonoBehaviour {
     public PathfinderController ai;
     [Header("Settings")]
     public int maxHealth;
+    public float bleedDelay;
+    public int bleedDamage = 2;
     public int physicalDamage;
     public float attackDelay;
 
@@ -15,12 +17,17 @@ public class EnemyController : MonoBehaviour {
 
     private int currentHealth;
     private float time;
+    private float bleedTime;
 
     private void FixedUpdate() {
         if (AIState) {
             List<Vector2> pathData = ai.FindPath();
             if (pathData == null) return;
             MoveTowards(pathData);
+        }
+        if (AIState && bleedTime + bleedDelay < Time.time) {
+            bleedTime = Time.time;
+            TakeDamage(bleedDamage);
         }
     }
 
