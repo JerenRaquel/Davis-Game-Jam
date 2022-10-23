@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour {
     private bool isAttacking = false;
     private bool isFiring = false;
     private int currentHealth;
+    private bool deadge = false;
 
     private void OnEnable() {
         inputMap.Enable();
@@ -74,7 +75,12 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (!isDashing) {
+        if (currentHealth <= 0) {
+            GameController.instance.GameOver();
+            deadge = true;
+        }
+
+        if (!isDashing && !deadge) {
             transform.position = transform.position + new Vector3(direction.x, direction.y, 0) * Time.deltaTime * speed;
             if (direction.x > 0) {
                 transform.localScale = new Vector3(1, 1, 1);

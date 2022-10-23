@@ -11,6 +11,7 @@ public class LoadRoomData : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
             PlayerController.instance.targetProbe.astar = astar;
+            GameController.instance.activeSpawner = spawner;
             if (!isSpawned) {
                 ////  ITS NOW A FEATURE!
                 isSpawned = true;

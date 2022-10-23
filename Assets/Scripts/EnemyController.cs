@@ -81,6 +81,7 @@ public class EnemyController : MonoBehaviour {
 
     private void Rebirth() {
         MakeStronger();
+        ScoreController.instance.TickScore();
     }
 
     private void UpdateHPBar() {

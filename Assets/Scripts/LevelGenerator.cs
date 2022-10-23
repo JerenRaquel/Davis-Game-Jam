@@ -25,6 +25,7 @@ public class LevelGenerator : MonoBehaviour
     public bool enableGenerationOnStart = true;
     public uint maxRooms = 5;
     public int spacing = 8;
+    public GameObject finalRoom;
     public GameObject[] rooms;
 
     private Dictionary<RoomController.ROOM_TYPE, List<GameObject>> roomMap;
@@ -67,8 +68,8 @@ public class LevelGenerator : MonoBehaviour
         this.openList.Add(this.spawnRoom);
         this.closedList.Add(this.spawnRoom);
 
-        for(int i = 0; i < maxRooms; i++) {
-            PickRoomReturnData chosen = PickRoom();
+        for (uint i = 0; i < maxRooms; i++) {
+            PickRoomReturnData chosen = PickRoom(maxRooms - i);
             // Get the room position to spawn in relative to the current room
             Vector2 position = Vector2.zero;
             switch (chosen.direction)
@@ -105,17 +106,21 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    private PickRoomReturnData PickRoom() {
+    private PickRoomReturnData PickRoom(uint roomsLeft) {
         // Choose a room wanting to connect
         RoomController chosen = this.openList[Random.Range(0, this.openList.Count)];
         // Choose a spawning direction relative to chosen room
         int openDoors = chosen.OpenDoors;
         RoomController.ROOM_TYPE[] directions = ParseDirections(openDoors);
         RoomController.ROOM_TYPE chosenDirection = directions[Random.Range(0, directions.Length)];
-        int count = this.roomMap[chosenDirection].Count;
         // Pack data and return results
         PickRoomReturnData data;
-        data.room = this.roomMap[chosenDirection][Random.Range(0, count)];
+        if (roomsLeft > 1) {
+            int count = this.roomMap[chosenDirection].Count;
+            data.room = this.roomMap[chosenDirection][Random.Range(0, count)];
+        } else {
+            data.room = this.finalRoom;
+        }
         data.direction = chosenDirection;
         data.prev = chosen;
         return data;
