@@ -23,6 +23,12 @@ public class PlayerController : MonoBehaviour {
     public float dashForce = 2f;
     public float dashTime;
     public float dashDelay;
+    public int maxHealth;
+
+    public int Healh {
+        get { return this.currentHealth; }
+        set { this.currentHealth = Mathf.Clamp(value, 0, maxHealth); }
+    }
 
     private ControlMap inputMap;
     private Rigidbody2D rb;
@@ -30,6 +36,7 @@ public class PlayerController : MonoBehaviour {
     private float time;
     private bool dashEnabled = true;
     private bool isDashing = false;
+    private int currentHealth;
 
     private void OnEnable() {
         inputMap.Enable();
@@ -50,6 +57,7 @@ public class PlayerController : MonoBehaviour {
     private void Start() {
         time = Time.time;
         rb = this.GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
     }
 
     private void FixedUpdate() {
